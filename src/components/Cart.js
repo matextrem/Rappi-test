@@ -26,7 +26,7 @@ const Cart = ({ products, total, onCheckoutClicked, onRemoveClicked }) => {
       <h2>Your Cart</h2>
       <div>{nodes}</div>
       <div className="total-checkout">
-        <p>Total: {total}</p>
+        <p>Total: &#36;{total}</p>
         <Button positive onClick={onCheckoutClicked}
           disabled={hasProducts === false}>
           Checkout
