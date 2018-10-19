@@ -1,8 +1,13 @@
-# Rappi-test
+# Rappi Test
+<p align="center">
+  <img src="http://blogs.eltiempo.com/digital-jumper/wp-content/uploads/sites/483/2017/07/FOTO-WEB-RAPPI-810x410.png" width="400">
+</p>
+
 Front end Rappi Test using React + Redux
 
 ## Frontend Developer Challenge
 ### Requerimientos
+
 
 Tiendas “El Baratón” necesita un e-commerce para expandir sus servicios, para eso don Pepe (propietario de la tienda) ha provisto de los siguientes requerimientos:
  * La tienda debe mostrar categorías las cuales están conformadas por subniveles, éstos subniveles a su vez pueden tener más subniveles anidados, se debe hacer un menú donde aparezcan categorías y subniveles de forma anidada. Ejemplo:
@@ -27,6 +32,7 @@ Tiendas “El Baratón” necesita un e-commerce para expandir sus servicios, p
 - [Setting up](#setting-up)
 - [Steps](#steps)
 - [Developed with](#developed-with)
+- [Authors](#authors)
 
 
 ## Setting up
@@ -41,7 +47,7 @@ Se crearon test para probar el funcionamiento y la integracion de los componente
 
 ## Steps
 
- Clonar este repositorio   ----> git clone git@github.com:matextrem/Rappi-test.git
+ Clonar este repositorio (`git clone git@github.com:matextrem/Rappi-test.git`)
  
 ```bash
  cd Rappi-test
