@@ -41,7 +41,7 @@ Para este test se decidio utilizar ReactJS + Redux como Librerias principales de
 
 La persistencia de datos para el carrito de compras, fue manejado con localStorage.
 
-La estructura del proyecto es la creada mediante create-react-app , especificada en el siguiente [link].(https://github.com/facebook/create-react-app)
+La estructura del proyecto es la creada mediante create-react-app , especificada en el siguiente [link](https://github.com/facebook/create-react-app).
 
 Se crearon tests para probar el funcionamiento y la integracion de los componentes de la aplicacion usando Jest.
 
