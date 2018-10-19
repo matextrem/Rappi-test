@@ -11,6 +11,11 @@ const receiveCategories = categories => ({
   categories,
 });
 
+const applyFilter = filter => ({
+  type: types.FILTER_PRODUCTS,
+  filter
+})
+
 export const getAllProducts = () => dispatch => {
   shop.getProducts(products => {
     dispatch(receiveProducts(products));
@@ -33,6 +38,10 @@ export const addToCart = productId => (dispatch, getState) => {
     dispatch(addToCartUnsafe(productId));
   }
 };
+
+export const doFilter = selection => (dispatch, getState) => {
+  dispatch(applyFilter(selection))
+}
 
 export const checkout = products => (dispatch, getState) => {
   const { cart } = getState();
