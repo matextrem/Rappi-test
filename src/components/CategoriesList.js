@@ -4,9 +4,11 @@ import { Dropdown } from 'semantic-ui-react';
 import './CategoriesList.scss';
 
 const CategoriesList = ({ categories, onCategoryClicked, categoryText }) => {
-  const dropDownCategories = (categories, name) => (
+  const dropDownCategories = (categories, name, isFirst) => (
     <Dropdown text={name} pointing className="category-dropdown link item">
       <Dropdown.Menu>
+        {isFirst && <Dropdown.Item onClick={() => onCategoryClicked(null,'All')} >All</Dropdown.Item>}
+        {isFirst = false}
         {categories.map(category => {
           if (category.sublevels)
             return (
@@ -29,7 +31,7 @@ const CategoriesList = ({ categories, onCategoryClicked, categoryText }) => {
   );
   return (
     <div className="categories-list">
-      {dropDownCategories(Object.values(categories), categoryText)}
+      {dropDownCategories(Object.values(categories), categoryText, true)}
     </div>
   );
 };
