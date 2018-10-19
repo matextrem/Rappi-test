@@ -37,7 +37,7 @@ const Cart = ({ products, total, onCheckoutClicked, onRemoveClicked }) => {
 };
 Cart.propTypes = {
   products: PropTypes.array,
-  total: PropTypes.string,
+  total: PropTypes.number,
   onCheckoutClicked: PropTypes.func,
 };
 export default Cart;

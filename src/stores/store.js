@@ -17,14 +17,16 @@ const store = createStore(
   persistedState,
   applyMiddleware(...middleware),
 );
+
 store.subscribe(
   _.throttle(() => {
-    saveState(store.getState());
+    saveState({ products: store.getState().products, cart: store.getState().cart });
   }, 1000),
 );
 
 store.dispatch(getAllProducts());
 store.dispatch(getAllCategories());
 store.dispatch(getMaxPrice());
+
 
 export default store;
