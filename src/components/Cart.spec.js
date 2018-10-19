@@ -20,19 +20,22 @@ const setup = (total, products = []) => {
   };
 };
 describe('Cart component', () => {
-  
+
   it('should display total', () => {
     const { p } = setup('76');
     expect(p.text()).toMatch(/^Total: \$76/);
   });
+
   it('should display add some products message', () => {
     const { em } = setup();
     expect(em.text()).toMatch(/^Please add some products to cart/);
   });
+
   it('should disable button', () => {
     const { button } = setup();
     expect(button.prop('disabled')).toEqual(true);
   });
+  
   describe('when given product', () => {
     const product = [
       {
