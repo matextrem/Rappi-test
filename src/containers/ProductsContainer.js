@@ -5,18 +5,23 @@ import { addToCart } from '../actions';
 import { getVisibleProducts } from '../reducers/products';
 import ProductItem from '../components/ProductItem';
 import ProductsList from '../components/ProductsList';
-import { Card } from 'semantic-ui-react'
+import { Card } from 'semantic-ui-react';
 
 const ProductsContainer = ({ products, addToCart }) => (
   <Card.Group>
     <ProductsList name="Products">
-      {products.map(product =>
-        <Card key={`card-${product.id}`}>
-          <ProductItem
-            key={product.id}
-            product={product}
-            onAddToCartClicked={() => addToCart(product.id)} />
-        </Card>
+      {products.length === 0 ? (
+        <em>There are no products.</em>
+      ) : (
+        products.map(product => (
+          <Card key={`card-${product.id}`}>
+            <ProductItem
+              key={product.id}
+              product={product}
+              onAddToCartClicked={() => addToCart(product.id)}
+            />
+          </Card>
+        ))
       )}
     </ProductsList>
   </Card.Group>
