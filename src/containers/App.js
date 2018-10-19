@@ -11,6 +11,7 @@ const App = () => (
     <Header as="h2">
       <Icon name="shopping bag" />
       <Header.Content>E-commerce App</Header.Content>
+      <hr />
     </Header>
     <div className="filter-container">
       <FilterContainer />
@@ -18,11 +19,12 @@ const App = () => (
         <CartContainer />
       </div>
     </div>
-    <hr />
     <div className="categories-container">
       <CategoriesContainer />
     </div>
-    <ProductsContainer />
+    <div className="products-container">
+      <ProductsContainer />
+    </div>
   </div>
 );
 

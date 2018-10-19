@@ -1,5 +1,7 @@
 import { RECEIVE_CATEGORIES } from '../constants/ActionTypes';
-const categories = (state = {}, action) => {
+import { combineReducers } from 'redux';
+
+const total = (state = {}, action) => {
   switch (action.type) {
     case RECEIVE_CATEGORIES:
       return {
@@ -10,4 +12,7 @@ const categories = (state = {}, action) => {
       return state;
   }
 };
-export default categories;
+
+export default combineReducers({
+  total,
+});

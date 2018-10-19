@@ -18,7 +18,9 @@ const maxPrice = products => ({
 
 const applyFilter = filter => ({
   type: types.FILTER_PRODUCTS,
-  filter,
+  format: filter.format,
+  filter: filter.selection,
+  text: filter.text,
 });
 
 export const getAllProducts = () => dispatch => {
@@ -61,9 +63,9 @@ export const addToCart = productId => (dispatch, getState) => {
   }
 };
 
-export const doFilter = selection => (dispatch, getState) => {
-  dispatch(applyFilter(selection));
-};
+export const doFilter = (selection,format,text = null) => dispatch => {
+  dispatch(applyFilter({selection,format, text}))
+}
 
 export const removeFromCart = productId => (dispatch, getState) => {
   const quantityProduct = getState().cart.quantityById[productId];

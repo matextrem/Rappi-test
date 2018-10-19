@@ -8,12 +8,18 @@ import {
   FILTER_AVAILABILITY,
   MAX_PRODUCT_PRICE,
   UPDATE_PRODUCT_FROM_CART,
+  FILTER_BY_PRICE_PRODUCT,
+  FILTER_BY_DROPDOWN_PRODUCT,
+  FILTER_BY_CATEGORY,
 } from '../constants/ActionTypes';
 
 const initialState = {
   priceFilter: 10000,
+  categoryFilter: null,
   dropDownFilter: '',
   maxPrice: 999999,
+  searchCategoryFilter: null,
+  categoryText: 'Categories',
 };
 
 const products = (state, action) => {
@@ -65,15 +71,26 @@ const visibleIds = (state = [], action) => {
 const currentFilter = (state = initialState, action) => {
   switch (action.type) {
     case FILTER_PRODUCTS:
-      if (typeof action.filter === 'number') {
+    if (action.format === FILTER_BY_PRICE_PRODUCT) {
         return {
           ...state,
           priceFilter: action.filter,
         };
-      } else {
+      } else if(action.format === FILTER_BY_DROPDOWN_PRODUCT) {
         return {
           ...state,
           dropDownFilter: action.filter,
+        };
+      } else if(action.format === FILTER_BY_CATEGORY){
+        return {
+          ...state,
+          categoryFilter: action.filter,
+          categoryText: action.text || state.categoryText
+        };
+      }else{
+        return {
+          ...state,
+          searchCategoryFilter: action.filter,
         };
       }
     case MAX_PRODUCT_PRICE:
@@ -93,12 +110,24 @@ const currentFilter = (state = initialState, action) => {
 
 export const getProduct = (state, id) => state.byId[id];
 
+const filterPrice = (product,state) => (
+  product.price.replace(/[^\d.]/g, '') <= state.currentFilter.priceFilter
+);
+
+const filterCategory = (product,state) => (
+  product.sublevel_id === state.currentFilter.categoryFilter || !state.currentFilter.categoryFilter
+);
+
+const searchByCategory = (product,state) => (
+  product.name.includes(state.currentFilter.searchCategoryFilter) || !state.currentFilter.searchCategoryFilter
+);
+
 export const getVisibleProducts = state => {
   const products = state.visibleIds
     .map(id => getProduct(state, id))
     .filter(
       product =>
-        product.price.replace(/[^\d.]/g, '') <= state.currentFilter.priceFilter,
+        filterPrice(product,state) && filterCategory(product,state) && searchByCategory(product,state),
     );
   switch (state.currentFilter.dropDownFilter) {
     case FILTER_ASC_QUANTITY:

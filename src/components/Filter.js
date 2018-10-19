@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { doFilter } from '../actions';
 import { connect } from 'react-redux';
 import { Dropdown, Input, Label } from 'semantic-ui-react';
+import { FILTER_BY_PRICE_PRODUCT, FILTER_BY_DROPDOWN_PRODUCT } from '../constants/ActionTypes';
 import './Filter.scss';
 
 const Filters = ({options, priceFilter, dropDownfilter, doFilter, maxPrice}) => {
@@ -10,7 +11,7 @@ const Filters = ({options, priceFilter, dropDownfilter, doFilter, maxPrice}) => 
     <div>
       <div className="price-filter">
         <input
-          onChange={e => doFilter(parseInt(e.target.value))}
+          onChange={e => doFilter(parseInt(e.target.value), FILTER_BY_PRICE_PRODUCT)}
           className="range-slider"
           type="range"
           name="price"
@@ -24,8 +25,8 @@ const Filters = ({options, priceFilter, dropDownfilter, doFilter, maxPrice}) => 
           placeholder="Amount"
           onChange={e => {
             isNaN(parseInt(e.target.value))
-              ? doFilter(0)
-              : doFilter(parseInt(e.target.value));
+              ? doFilter(0, FILTER_BY_PRICE_PRODUCT)
+              : doFilter(parseInt(e.target.value), FILTER_BY_PRICE_PRODUCT);
           }}
           value={priceFilter.toString()}
         >
@@ -41,7 +42,7 @@ const Filters = ({options, priceFilter, dropDownfilter, doFilter, maxPrice}) => 
         labeled
         button
         className="icon"
-        onChange={(e, selection) => doFilter(selection.value)}
+        onChange={(e, selection) => doFilter(selection.value, FILTER_BY_DROPDOWN_PRODUCT)}
         options={options}
         selection
       />

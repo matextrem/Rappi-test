@@ -18,7 +18,6 @@ const ProductItem = ({ product, onAddToCartClicked }) => (
         disabled={!(product.quantity > 0)}
       >
         <Button.Content hidden>
-          {' '}
           {product.quantity > 0 ? 'Add' : 'Sold Out'}
         </Button.Content>
         <Button.Content visible>

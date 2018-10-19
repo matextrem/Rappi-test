@@ -2,7 +2,7 @@
   padding: 30px;
 }
 .filter-container {
-  width: 200px;
+  width: auto;
   float: right;
   margin-top: 20px;
 }
@@ -10,5 +10,36 @@
   margin-top: 20px;
   .ui.card {
     padding: 20px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .filter-container {
+    float: none;
+    .labeled {
+      width: 100%;
+    }
+  }
+  .cart-container {
+    width: 100%;
+    .ui.card {
+      div {
+        text-align: center;
+      }
+    }
+  }
+  .products-list,
+  .cart-container {
+    .ui.card {
+      width: 100%;
+    }
+  }
+  .categories-container {
+    .category-filter {
+      margin-right: 0;
+    }
+    .input {
+      width: 100%;
+    }
   }
 }
