@@ -43,7 +43,7 @@ La persistencia de datos para el carrito de compras, fue manejado con localStora
 
 La estructura del proyecto es la creada mediante create-react-app , especificada en el siguiente [link](https://github.com/facebook/create-react-app).
 
-Se crearon tests para probar el funcionamiento y la integracion de los componentes de la aplicacion usando Jest.
+Se crearon tests para probar el funcionamiento y la integracion de los componentes de la aplicacion usando Jest y Enzyme.
 
 ## Steps
 
@@ -61,6 +61,8 @@ Se crearon tests para probar el funcionamiento y la integracion de los component
 * [ReactJS](https://reactjs.org/) - Libreria utilizada para el desarrollo del frontend.
 * [Redux](https://github.com/reduxjs/redux) - Libreria utilizada para el manejo de los estados de la aplicación y la persistencia del mismo en localStorage.
 * [React Semantic-UI](http://react.semantic-ui.com/) - User interface utilizada para el styling de la aplicación.
+* [Jest](https://jestjs.io/) - Herramienta utilizada para los tests.
+
 
 ## Authors
 
