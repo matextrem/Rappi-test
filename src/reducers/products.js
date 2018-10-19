@@ -1,9 +1,19 @@
 import { combineReducers } from 'redux';
-import { RECEIVE_PRODUCTS, ADD_TO_CART, FILTER_PRODUCTS, FILTER_ASC_QUANTITY, FILTER_DESC_QUANTITY, FILTER_AVAILABILITY } from '../constants/ActionTypes';
+import {
+  RECEIVE_PRODUCTS,
+  ADD_TO_CART,
+  FILTER_PRODUCTS,
+  FILTER_ASC_QUANTITY,
+  FILTER_DESC_QUANTITY,
+  FILTER_AVAILABILITY,
+  MAX_PRODUCT_PRICE,
+} from '../constants/ActionTypes';
 
 const initialState = {
-  currentFilter: null,
-}
+  priceFilter: 10000,
+  dropDownFilter: '',
+  maxPrice: 999999,
+};
 
 const products = (state, action) => {
   switch (action.type) {
@@ -46,36 +56,58 @@ const visibleIds = (state = [], action) => {
   }
 };
 
-const currentFilter = (state = initialState.currentFilter, action) => {
+const currentFilter = (state = initialState, action) => {
   switch (action.type) {
     case FILTER_PRODUCTS:
-      return action.filter
+      if (typeof action.filter === 'number') {
+        return {
+          ...state,
+          priceFilter: action.filter,
+        };
+      } else {
+        return {
+          ...state,
+          dropDownFilter: action.filter,
+        };
+      }
+    case MAX_PRODUCT_PRICE:
+      const maxPrice = Math.max.apply(
+        Math,
+        action.products.map(product => product.price.replace(/[^\d.]/g, '')),
+      );
+      return {
+        ...state,
+        maxPrice,
+        priceFilter: maxPrice,
+      };
     default:
-      return state
+      return state;
   }
-}
+};
 
 export const getProduct = (state, id) => state.byId[id];
 
 export const getVisibleProducts = state => {
-  const products = state.visibleIds.map(id => getProduct(state, id))
-  if(state.currentFilter){
-    switch (state.currentFilter) {
-      case FILTER_ASC_QUANTITY:
-        return products.sort((a, b) => a.quantity - b.quantity );
-      case FILTER_DESC_QUANTITY:
-        return products.sort((a, b) => b.quantity - a.quantity );
-      case FILTER_AVAILABILITY:
-        return products.sort((a, b) => b.available - a.available );
-      default:
-        return products;
-    }
+  const products = state.visibleIds
+    .map(id => getProduct(state, id))
+    .filter(
+      product =>
+        product.price.replace(/[^\d.]/g, '') <= state.currentFilter.priceFilter,
+    );
+  switch (state.currentFilter.dropDownFilter) {
+    case FILTER_ASC_QUANTITY:
+      return products.sort((a, b) => a.quantity - b.quantity);
+    case FILTER_DESC_QUANTITY:
+      return products.sort((a, b) => b.quantity - a.quantity);
+    case FILTER_AVAILABILITY:
+      return products.sort((a, b) => b.available - a.available);
+    default:
+      return products;
   }
-  return products;
-}
+};
 
-  export default combineReducers({
-    byId,
-    visibleIds,
-    currentFilter
-  });
+export default combineReducers({
+  byId,
+  visibleIds,
+  currentFilter,
+});

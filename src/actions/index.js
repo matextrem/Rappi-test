@@ -11,10 +11,15 @@ const receiveCategories = categories => ({
   categories,
 });
 
+const maxPrice = products => ({
+  type: types.MAX_PRODUCT_PRICE,
+  products,
+});
+
 const applyFilter = filter => ({
   type: types.FILTER_PRODUCTS,
-  filter
-})
+  filter,
+});
 
 export const getAllProducts = () => dispatch => {
   shop.getProducts(products => {
@@ -25,6 +30,12 @@ export const getAllProducts = () => dispatch => {
 export const getAllCategories = () => dispatch => {
   shop.getCategories(categories => {
     dispatch(receiveCategories(categories));
+  });
+};
+
+export const getMaxPrice = () => dispatch => {
+  shop.getProducts(products => {
+    dispatch(dispatch(maxPrice(products)));
   });
 };
 
@@ -40,8 +51,8 @@ export const addToCart = productId => (dispatch, getState) => {
 };
 
 export const doFilter = selection => (dispatch, getState) => {
-  dispatch(applyFilter(selection))
-}
+  dispatch(applyFilter(selection));
+};
 
 export const checkout = products => (dispatch, getState) => {
   const { cart } = getState();

@@ -2,7 +2,7 @@ import { createLogger } from 'redux-logger';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import reducer from '../reducers';
-import { getAllProducts, getAllCategories } from '../actions';
+import { getAllProducts, getAllCategories, getMaxPrice } from '../actions';
 import { loadState, saveState } from '../localStorage';
 import _ from 'lodash';
 
@@ -25,5 +25,6 @@ store.subscribe(
 
 store.dispatch(getAllProducts());
 store.dispatch(getAllCategories());
+store.dispatch(getMaxPrice());
 
 export default store;
