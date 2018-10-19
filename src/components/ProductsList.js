@@ -4,7 +4,7 @@ import './ProductsList.scss';
 
 const ProductsList = ({ name, children }) => (
   <div className="products-list">
-    <h3>{name}</h3>
+    <h1>{name}</h1>
     <div className="card-container">{children}</div>
   </div>
 );

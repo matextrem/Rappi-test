@@ -2,6 +2,7 @@ import {
   ADD_TO_CART,
   CHECKOUT_REQUEST,
   CHECKOUT_FAILURE,
+  REMOVE_FROM_CART,
 } from '../constants/ActionTypes';
 const initialState = {
   addedIds: [],
@@ -14,10 +15,13 @@ const addedIds = (state = initialState.addedIds, action) => {
         return state;
       }
       return [...state, action.productId];
+    case REMOVE_FROM_CART:
+      return state.filter(el => el !== action.productId);
     default:
       return state;
   }
 };
+
 const quantityById = (state = initialState.quantityById, action) => {
   switch (action.type) {
     case ADD_TO_CART:
@@ -26,13 +30,19 @@ const quantityById = (state = initialState.quantityById, action) => {
         ...state,
         [productId]: (state[productId] || 0) + 1,
       };
+    case REMOVE_FROM_CART:
+      const  { [action.productId]:deletedValue, ...rest } = state;
+      return rest;
     default:
       return state;
   }
 };
+
 export const getQuantity = (state, productId) =>
   state.quantityById[productId] || 0;
+
 export const getAddedIds = state => state.addedIds;
+
 const cart = (state = initialState, action) => {
   switch (action.type) {
     case CHECKOUT_REQUEST:
@@ -46,4 +56,5 @@ const cart = (state = initialState, action) => {
       };
   }
 };
+
 export default cart;

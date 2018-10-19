@@ -44,6 +44,11 @@ const addToCartUnsafe = productId => ({
   productId,
 });
 
+const removeItemFromCart = productId => ({
+  type: types.REMOVE_FROM_CART,
+  productId
+})
+
 export const addToCart = productId => (dispatch, getState) => {
   if (getState().products.byId[productId].quantity > 0) {
     dispatch(addToCartUnsafe(productId));
@@ -54,8 +59,8 @@ export const doFilter = selection => (dispatch, getState) => {
   dispatch(applyFilter(selection));
 };
 
-export const removeFromCart = id => (dispatch, getState) => {
-  console.log('es el id ', id);
+export const removeFromCart = productId => (dispatch, getState) => {
+  dispatch(removeItemFromCart(productId))
 }
 
 export const checkout = products => (dispatch, getState) => {

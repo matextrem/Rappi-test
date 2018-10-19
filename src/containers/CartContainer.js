@@ -6,7 +6,7 @@ import { getTotal, getCartProducts } from '../reducers';
 import { Card } from 'semantic-ui-react';
 import Cart from '../components/Cart';
 
-const CartContainer = ({ products, total, checkout }) => (
+const CartContainer = ({ products, total, checkout, removeFromCart }) => (
   <Card>
     <Cart
       products={products}

@@ -7,27 +7,23 @@ import './Cart.scss';
 const Cart = ({ products, total, onCheckoutClicked, onRemoveClicked }) => {
   const hasProducts = products.length > 0;
   const nodes = hasProducts ? (
-    products.map(product => [
-      <Product
-        name={product.name}
-        price={product.price}
-        quantity={product.quantity}
-        key={product.id}
-      />,
-      <Button
-        negative
-        onClick={onRemoveClicked(product.id)}
-        key={`button-${product.id}`}
-      >
-        Remove
-      </Button>,
-    ])
+    products.map(product =>
+      <div key={`container-${product.id}`} className="checkout-product">
+        <Product
+          name={product.name}
+          price={product.price}
+          quantity={product.quantity}
+          key={product.id}
+        />,
+        <Button negative onClick={() => onRemoveClicked(product.id)} key={`button-${product.id}`}>Remove</Button>
+      </div>
+    )
   ) : (
     <em>Please add some products to cart.</em>
   );
   return (
     <div>
-      <h3>Your Cart</h3>
+      <h2>Your Cart</h2>
       <div>{nodes}</div>
       <div className="total-checkout">
         <p>Total: {total}</p>
