@@ -20,7 +20,7 @@ const store = createStore(
 
 store.subscribe(
   _.throttle(() => {
-    saveState({ products: store.getState().products, cart: store.getState().cart });
+    saveState(store.getState());
   }, 1000),
 );
 
