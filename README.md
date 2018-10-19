@@ -25,7 +25,9 @@ Tiendas “El Baratón” necesita un e-commerce para expandir sus servicios, p
 ## Table of Contents
 
 - [Setting up](#setting-up)
-- [Sending Feedback](#sending-feedback)
+- [Steps](#steps)
+- [Developed with](#developed-with)
+
 
 ## Setting up
 
@@ -35,5 +37,26 @@ La persistencia de datos para el carrito de compras, fue manejado con localStora
 
 La estructura del proyecto es la creada mediante create-react-app , especificada en el siguiente [link](https://github.com/facebook/create-react-app)
 
+Se crearon test para probar el funcionamiento y la integracion de los componentes de la aplicacion usando Jest.
 
+## Steps
+
+ Clonar este repositorio   ----> git clone git@github.com:matextrem/Rappi-test.git
+ 
+```bash
+ cd Rappi-test
+ npm install
+ npm run build
+ npm run start  //Esto abrira la aplicacion en http://localhost:3000
+ ```
+
+## Developed with
+
+* [ReactJS](https://reactjs.org/) - Libreria utilizada para el desarrollo del frontend.
+* [Redux](https://github.com/reduxjs/redux) - Libreria utilizada para el manejo de los estados de la aplicación y la persistencia del mismo en localStorage.
+* [React Semantic-UI](http://react.semantic-ui.com/) - User interface utilizada para el styling de la aplicación.
+
+## Authors
+
+* **Matias Dastugue**
 
