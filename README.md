@@ -37,13 +37,13 @@ Tiendas “El Baratón” necesita un e-commerce para expandir sus servicios, p
 
 ## Setting up
 
-Para este test se decidio utilizar ReactJS + Redux como Librerias principales de JS. Se utilizo la version 2 de create-react-app
+Para este test se decidio utilizar ReactJS + Redux como Librerias principales de JS. Se utilizo la version 2 de create-react-app.
 
 La persistencia de datos para el carrito de compras, fue manejado con localStorage.
 
-La estructura del proyecto es la creada mediante create-react-app , especificada en el siguiente [link](https://github.com/facebook/create-react-app)
+La estructura del proyecto es la creada mediante create-react-app , especificada en el siguiente [link].(https://github.com/facebook/create-react-app)
 
-Se crearon test para probar el funcionamiento y la integracion de los componentes de la aplicacion usando Jest.
+Se crearon tests para probar el funcionamiento y la integracion de los componentes de la aplicacion usando Jest.
 
 ## Steps
 
