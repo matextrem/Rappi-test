@@ -15,7 +15,7 @@ const ProductItem = ({ product, onAddToCartClicked }) => (
       <Button
         animated="vertical"
         onClick={onAddToCartClicked}
-        disabled={product.quantity > 0 ? '' : 'disabled'}
+        disabled={!(product.quantity > 0)}
       >
         <Button.Content hidden>
           {' '}

@@ -49,6 +49,12 @@ const removeItemFromCart = productId => ({
   productId
 })
 
+const updateProductQuantity = cartData => ({
+  type: types.UPDATE_PRODUCT_FROM_CART,
+  productId: cartData.productId,
+  quantity: cartData.quantityProduct,
+})
+
 export const addToCart = productId => (dispatch, getState) => {
   if (getState().products.byId[productId].quantity > 0) {
     dispatch(addToCartUnsafe(productId));
@@ -60,7 +66,10 @@ export const doFilter = selection => (dispatch, getState) => {
 };
 
 export const removeFromCart = productId => (dispatch, getState) => {
-  dispatch(removeItemFromCart(productId))
+  const quantityProduct = getState().cart.quantityById[productId];
+  dispatch(removeItemFromCart(productId));
+  dispatch(updateProductQuantity({productId, quantityProduct}));
+
 }
 
 export const checkout = products => (dispatch, getState) => {

@@ -28,7 +28,7 @@ const Cart = ({ products, total, onCheckoutClicked, onRemoveClicked }) => {
       <div className="total-checkout">
         <p>Total: {total}</p>
         <Button positive onClick={onCheckoutClicked}
-          disabled={hasProducts ? '' : 'disabled'}>
+          disabled={hasProducts === false}>
           Checkout
         </Button>
       </div>

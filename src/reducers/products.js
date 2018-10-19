@@ -7,6 +7,7 @@ import {
   FILTER_DESC_QUANTITY,
   FILTER_AVAILABILITY,
   MAX_PRODUCT_PRICE,
+  UPDATE_PRODUCT_FROM_CART,
 } from '../constants/ActionTypes';
 
 const initialState = {
@@ -35,6 +36,11 @@ const byId = (state = {}, action) => {
           obj[product.id] = product;
           return obj;
         }, {}),
+      };
+    case UPDATE_PRODUCT_FROM_CART:
+      return {
+        ...state,
+        ...state[action.productId].quantity = state[action.productId].quantity + action.quantity,
       };
     default:
       const { productId } = action;
