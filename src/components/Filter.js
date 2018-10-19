@@ -2,34 +2,37 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { doFilter } from '../actions';
 import { connect } from 'react-redux';
-import { Dropdown } from 'semantic-ui-react';
-const Filters = ({
-  options,
-  priceFilter,
-  dropDownfilter,
-  doFilter,
-  maxPrice,
-}) => {
+import { Dropdown, Input, Label } from 'semantic-ui-react';
+import './Filter.scss';
+
+const Filters = ({options, priceFilter, dropDownfilter, doFilter, maxPrice}) => {
   return (
     <div>
-      <div data-role="rangeslider">
+      <div className="price-filter">
         <input
           onChange={e => doFilter(parseInt(e.target.value))}
+          className="range-slider"
           type="range"
           name="price"
           value={priceFilter.toString()}
           min="0"
           max={maxPrice.toString()}
         />
-        <input
+        <Input
+          labelPosition="right"
+          type="text"
+          placeholder="Amount"
           onChange={e => {
             isNaN(parseInt(e.target.value))
               ? doFilter(0)
               : doFilter(parseInt(e.target.value));
           }}
-          type="text"
           value={priceFilter.toString()}
-        />
+        >
+          <Label basic>$</Label>
+          <input />
+          <Label>.00</Label>
+        </Input>
       </div>
       <Dropdown
         icon="filter"

@@ -5,17 +5,23 @@ import { addToCart } from '../actions';
 import { getVisibleProducts } from '../reducers/products';
 import ProductItem from '../components/ProductItem';
 import ProductsList from '../components/ProductsList';
+import { Card } from 'semantic-ui-react'
+
 const ProductsContainer = ({ products, addToCart }) => (
-  <ProductsList name="Products">
-    {products.map(product => (
-      <ProductItem
-        key={product.id}
-        product={product}
-        onAddToCartClicked={() => addToCart(product.id)}
-      />
-    ))}
-  </ProductsList>
+  <Card.Group>
+    <ProductsList name="Products">
+      {products.map(product =>
+        <Card key={`card-${product.id}`}>
+          <ProductItem
+            key={product.id}
+            product={product}
+            onAddToCartClicked={() => addToCart(product.id)} />
+        </Card>
+      )}
+    </ProductsList>
+  </Card.Group>
 );
+
 ProductsContainer.propTypes = {
   products: PropTypes.arrayOf(
     PropTypes.shape({
@@ -27,9 +33,11 @@ ProductsContainer.propTypes = {
   ).isRequired,
   addToCart: PropTypes.func.isRequired,
 };
+
 const mapStateToProps = state => ({
   products: getVisibleProducts(state.products),
 });
+
 export default connect(
   mapStateToProps,
   { addToCart },

@@ -54,6 +54,10 @@ export const doFilter = selection => (dispatch, getState) => {
   dispatch(applyFilter(selection));
 };
 
+export const removeFromCart = id => (dispatch, getState) => {
+  console.log('es el id ', id);
+}
+
 export const checkout = products => (dispatch, getState) => {
   const { cart } = getState();
   dispatch({
