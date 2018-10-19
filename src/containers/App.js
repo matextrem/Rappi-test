@@ -2,6 +2,7 @@ import React from 'react';
 import ProductsContainer from './ProductsContainer';
 import CartContainer from './CartContainer';
 import FilterContainer from './FilterContainer';
+import CategoriesContainer from './CategoriesContainer';
 import { Header, Icon } from 'semantic-ui-react';
 import './App.scss';
 
@@ -18,6 +19,9 @@ const App = () => (
       </div>
     </div>
     <hr />
+    <div className="categories-container">
+      <CategoriesContainer />
+    </div>
     <ProductsContainer />
   </div>
 );
