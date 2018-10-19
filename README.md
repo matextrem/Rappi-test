@@ -49,6 +49,8 @@ Se crearon tests para probar el funcionamiento y la integracion de los component
 
  Clonar este repositorio (`git clone git@github.com:matextrem/Rappi-test.git`)
  
+ NODE_VERSION : 8.12.0
+ 
 ```bash
  cd Rappi-test
  npm install
